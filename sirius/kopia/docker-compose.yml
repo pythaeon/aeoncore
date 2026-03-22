@@ -1,0 +1,31 @@
+name: kopia
+
+services:
+  kopia:
+    image: kopia/kopia:latest
+    container_name: kopia
+    hostname: kopia
+    restart: unless-stopped
+    command:
+      - server
+      - start
+      - --insecure
+      - --address=0.0.0.0:51515
+      - --server-username=${KOPIA_SERVER_USERNAME}
+      - --server-password=${KOPIA_SERVER_PASSWORD}
+      - --password=${KOPIA_REPO_PASSWORD}
+    ports:
+      - "51515:51515/tcp"
+    environment:
+      USER: "1000"
+      GROUP: "1000"
+    volumes:
+      - /srv/appdata/kopia:/app/config
+      - /mnt/shared/backups/kopia:/repository
+      - /srv/appdata:/data:ro
+    networks:
+      - kopia_net
+
+networks:
+  kopia_net:
+    name: kopia_net

@@ -1,0 +1,26 @@
+name: minecraft
+
+services:
+  minecraft:
+    image: itzg/minecraft-server:latest
+    container_name: minecraft
+    hostname: minecraft
+    restart: unless-stopped
+    stdin_open: true
+    tty: true
+    ports:
+      - "25565:25565/tcp"
+    environment:
+      EULA: "true"
+      TYPE: PAPER
+      MEMORY: 4G
+      TZ: America/Chicago
+    volumes:
+      - /srv/appdata/minecraft:/data
+      - /srv/appdata/minecraft/plugins:/plugins
+    networks:
+      - minecraft_net
+
+networks:
+  minecraft_net:
+    name: minecraft_net
