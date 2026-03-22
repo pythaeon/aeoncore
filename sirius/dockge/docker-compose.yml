@@ -1,0 +1,22 @@
+name: dockge
+
+services:
+  dockge:
+    image: louislam/dockge:1
+    container_name: dockge
+    hostname: dockge
+    restart: unless-stopped
+    ports:
+      - "5001:5001/tcp"
+    environment:
+      DOCKGE_STACKS_DIR: /opt/stacks
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+      - /srv/appdata/dockge:/app/data
+      - /srv/appdata:/opt/stacks
+    networks:
+      - dockge_net
+
+networks:
+  dockge_net:
+    name: dockge_net
