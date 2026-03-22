@@ -35,9 +35,3 @@ services:
 networks:
   beszel_net:
     name: beszel_net
-```
-
-`sirius/beszel/.env.example`:
-```
-BESZEL_KEY=your_ssh_ed25519_public_key_here
-BESZEL_TOKEN=your_token_here

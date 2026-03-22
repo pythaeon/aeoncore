@@ -26,8 +26,3 @@ services:
 networks:
   pihole_net:
     name: pihole_net
-```
-
-Then `sirius/pihole/.env.example`:
-```
-PIHOLE_PASSWORD=your_password_here
