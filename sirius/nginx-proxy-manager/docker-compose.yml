@@ -1,0 +1,21 @@
+name: nginx-proxy-manager
+
+services:
+  npm:
+    image: jc21/nginx-proxy-manager:latest
+    container_name: nginx-proxy-manager
+    hostname: nginx-proxy-manager
+    restart: unless-stopped
+    ports:
+      - "80:80/tcp"
+      - "443:443/tcp"
+      - "81:81/tcp"
+    volumes:
+      - /srv/appdata/nginx-proxy-manager/data:/data
+      - /srv/appdata/nginx-proxy-manager/letsencrypt:/etc/letsencrypt
+    networks:
+      - npm_net
+
+networks:
+  npm_net:
+    name: npm_net

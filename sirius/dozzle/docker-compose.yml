@@ -1,0 +1,21 @@
+name: dozzle
+
+services:
+  dozzle:
+    image: amir20/dozzle:latest
+    container_name: dozzle
+    hostname: dozzle
+    restart: unless-stopped
+    ports:
+      - "8083:8080/tcp"
+    environment:
+      DOZZLE_LEVEL: info
+      DOZZLE_REMOTE_AGENT: deneb:7007
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock:ro
+    networks:
+      - dozzle_net
+
+networks:
+  dozzle_net:
+    name: dozzle_net
